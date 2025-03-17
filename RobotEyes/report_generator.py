@@ -209,6 +209,7 @@ def get_count_of_sub_directories(results_path):
 
 
 def make_test_table(html, baseline_folder, relative_baseline_folder_path, img_path, test_name, folder_name):
+    escaped_folder_name = folder_name.replace("'", "&#39;")
     html += '''<tr data-toggle="collapse" data-target='div[value="%s"]' class="accordion-toggle">
             <td>
             <button class="btn btn-default btn-sm"><i class="fas fa-arrow-right"></i></button>
@@ -226,7 +227,7 @@ def make_test_table(html, baseline_folder, relative_baseline_folder_path, img_pa
             <th>Diff value<br><font size="2">(Exp : Actual)</font></th>
             </tr>
             </thead>
-            <tbody>''' % (folder_name, test_name, folder_name)
+            <tbody>''' % (escaped_folder_name, test_name, escaped_folder_name)
 
     for filename in os.listdir(baseline_folder + os.path.sep + folder_name):
         if filename.endswith('.png'):
@@ -282,6 +283,7 @@ def make_test_table(html, baseline_folder, relative_baseline_folder_path, img_pa
 
 def make_non_web_test_table(html, baseline_folder, relative_baseline_folder_path, img_path, test_name,
                             folder_name, actual_folder, relative_actual_folder_path):
+    escaped_folder_name = folder_name.replace("'", "&#39;")
     html += '''<tr data-toggle="collapse" data-target='div[value="%s"]' class="accordion-toggle">
                 <td>
                 <button class="btn btn-default btn-sm"><i class="fas fa-arrow-right"></i></button>
@@ -299,7 +301,7 @@ def make_non_web_test_table(html, baseline_folder, relative_baseline_folder_path
                 <th>Diff value<br><font size="2">(Exp : Actual)</font></th>
                 </tr>
                 </thead>
-                <tbody>''' % (folder_name, test_name, folder_name)
+                <tbody>''' % (escaped_folder_name, test_name, escaped_folder_name)
 
     test_folder = os.path.join(img_path, 'actual', folder_name)
 
